@@ -17,7 +17,7 @@ void setup(){
 void draw(){
  if(cena == 1){
    fill(0);
-   textSize(96);
+   textSize(64);
    text(logica.matriz[0][0],110,120);
    text(logica.matriz[0][1],280,120);
    text(logica.matriz[0][2],460,120);
@@ -55,6 +55,7 @@ void drawBoard(){
 
  void inicio() {
   cena = 0;
+  background(255);
   fill(65, 105, 255);
   text("Jogo da Velha", 80, height / 3);
   text("Iniciar", 200, height / 1.7);
@@ -66,6 +67,13 @@ void drawBoard(){
   }
  }
  
+ void fim(){
+   background(255);
+   fill(0);
+   text("Fim do jogo!",80, height/3);
+   text("(WIP)", 200, height / 1.7);
+ }
+ 
  void mouseClicked() {
   if(cena == 0){
     cena = 1;
@@ -74,10 +82,16 @@ void drawBoard(){
   if(cena == 1){
     drawJogada();
   }
+  if(cena == 2){
+    cena = 0;
+  }
  }
  
  void drawJogada(){
   println(mouseX + " " + mouseY);
+   
+   //checa tabuleiro antes da próx jogada
+   verificarTabuleiro();
 
    //jogada no quadrado 1,1
    if(mouseX >= 20 && mouseX <= 195 && mouseY >= 20 && mouseY <= 195){
@@ -114,5 +128,12 @@ void drawBoard(){
    //jogada no quadrado 3,3
    if(mouseX >= 403 && mouseX <= 580 && mouseY >= 403 && mouseY <= 580){
      logica.jogada(2,2);
+   }
+ }
+ 
+ void verificarTabuleiro(){
+   if(logica.checarTabuleiro()){
+     cena = 2;
+     fim();
    }
  }
