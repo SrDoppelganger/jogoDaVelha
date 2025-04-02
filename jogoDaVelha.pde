@@ -76,7 +76,9 @@ void drawBoard(){
   text("um jogador", 300, 350);
   fill(p2Color[0],p2Color[1],p2Color[2]);
   text("dois jogadores",300, 450);
-  
+  textSize(16);
+  fill(lineColor[0],lineColor[1],lineColor[2]);
+  text("(pressione as teclas numericas para mudar de tema)", 300, 25);
   }
  
  void empate(){
