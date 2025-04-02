@@ -26,13 +26,13 @@ void jogada(int li, int col, boolean single){
   } 
   if(li>=0 && li < 3 && li>=0 && li <3 && matriz[li][col] == ""){
     matriz[li][col] = jogadorDaVez;
-    println(matriz[li][col]);
   }
 }
 
 
 void trocarJogador(boolean single){
   checarTabuleiro();
+  println("trocando jogador...");
   jogadorDaVez = (jogadorDaVez == "X") ? "O" : "X";
   if(single && jogadorDaVez == "O"){
     jogadaCPU();
@@ -66,6 +66,8 @@ boolean checarResultado(){
 }
 
 void jogadaCPU(){
+  checarResultado();
+  jogadorDaVez = "O";
   ArrayList<int[]> espacosVazios = new ArrayList<int[]>();
   //procura por espaços vazios, e os armazenam na memória
   println(logica.matriz[0][0]);
@@ -79,7 +81,7 @@ void jogadaCPU(){
  
  if(!espacosVazios.isEmpty()){
    int[] espaco = espacosVazios.get((int)random(espacosVazios.size()));
-   logica.jogada(espaco[0],espaco[1],true);
+   jogada(espaco[0],espaco[1],true);
  }
 }
 
