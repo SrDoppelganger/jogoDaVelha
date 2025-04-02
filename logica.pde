@@ -14,12 +14,17 @@ void reset(){
   }
 }
 
-void jogada(int li, int col){
+void jogada(int li, int col, boolean single){
   checarResultado();
   if(li >= 0 && li < 3 && col >= 0 && col < 3 && matriz[li][col] == ""){
     matriz[li][col] = jogadorDaVez;
-    println(matriz[li][col]);  
-    trocarJogador();
+    println(matriz[li][col]); 
+    if(single){
+     jogadaCPU();
+    }
+    else{
+     trocarJogador();
+    }
   }
   else{
     println("Jogada inválida");
@@ -61,6 +66,12 @@ boolean checarResultado(){
   
   return (matriz[0][0] == jogadorDaVez && matriz[1][1] == jogadorDaVez && matriz[2][2] == jogadorDaVez) ||
          (matriz[0][2] == jogadorDaVez && matriz[1][1] == jogadorDaVez && matriz[2][0] == jogadorDaVez);
+}
+
+
+//lógica CPU
+void jogadaCPU(){
+
 }
 
 }

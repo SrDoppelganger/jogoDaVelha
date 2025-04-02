@@ -1,4 +1,5 @@
 int cena; // 0-tela de inicio 1-tela do jogo 2-tela de fim
+boolean single; //verifica se o jogo está em singleplayer
 String jogador = "Jogador 1";
 //importa lógica do jogo
 logica logica = new logica();
@@ -83,8 +84,9 @@ void drawBoard(){
    cena = 2;
    background(255);
    fill(0);
-   text("Empate!",80, height/3);
-   text("(WIP)", 200, height / 1.7);
+   textAlign(CENTER);
+   text("Empate!",300, height/3);
+   text("(WIP)", 300, height / 1.7);
  }
  
  void vitoria(){
@@ -112,9 +114,16 @@ void drawBoard(){
   if(cena == 0){
     println(mouseX + " " + mouseY);
     if(mouseX >= 0 && mouseX <= 600 && mouseY >= 280 && mouseY <= 380){
-      println("fazer CPU");
+      //modo um jogador
+      single = true;
+      println("entrando em modo singleplayer");
+      
+      drawBoard();
+      cena = 1;
     }
     if(mouseX >= 0 && mouseX <= 600 && mouseY > 380 && mouseY <= 600){
+      //modo dois jogadores
+      single = false;
       drawBoard();
       cena = 1;
     }
@@ -137,39 +146,39 @@ void drawBoard(){
 
    //jogada no quadrado 1,1
    if(mouseX >= 20 && mouseX <= 195 && mouseY >= 20 && mouseY <= 195){
-     logica.jogada(0,0);
+     logica.jogada(0,0,single);
    }
    //jogada no quadrado 1,2
    if(mouseX >= 202 && mouseX <= 398 && mouseY >= 20 && mouseY <= 195){
-     logica.jogada(0,1);
+     logica.jogada(0,1,single);
    }
    //jogada no quadrado 1,3
    if(mouseX >= 403 && mouseX <= 580 && mouseY >= 20 && mouseY <= 195){
-     logica.jogada(0,2);
+     logica.jogada(0,2,single);
    }
     //jogada no quadrado 2,1
    if(mouseX >= 20 && mouseX <= 195 && mouseY >= 202 && mouseY <= 398){
-     logica.jogada(1,0);
+     logica.jogada(1,0,single);
    }
    //jogada no quadrado 2,2
    if(mouseX >= 202 && mouseX <= 398 && mouseY >= 202 && mouseY <= 398){
-     logica.jogada(1,1);
+     logica.jogada(1,1,single);
    }
    //jogada no quadrado 2,3
    if(mouseX >= 403 && mouseX <= 580 && mouseY >= 202 && mouseY <= 398){
-     logica.jogada(1,2);
+     logica.jogada(1,2,single);
    }
     //jogada no quadrado 3,1
    if(mouseX >= 20 && mouseX <= 195 && mouseY >= 403 && mouseY <= 580){
-     logica.jogada(2,0);
+     logica.jogada(2,0,single);
    }
    //jogada no quadrado 3,2
    if(mouseX >= 202 && mouseX <= 398 && mouseY >= 403 && mouseY <= 580){
-     logica.jogada(2,1);
+     logica.jogada(2,1,single);
    }
    //jogada no quadrado 3,3
    if(mouseX >= 403 && mouseX <= 580 && mouseY >= 403 && mouseY <= 580){
-     logica.jogada(2,2);
+     logica.jogada(2,2,single);
    }
  }
  
