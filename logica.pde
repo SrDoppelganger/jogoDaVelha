@@ -60,7 +60,7 @@ boolean checarResultado(){
   }
   
   return (matriz[0][0] == jogadorDaVez && matriz[1][1] == jogadorDaVez && matriz[2][2] == jogadorDaVez) ||
-         (matriz[0][2] == jogadorDaVez && matriz[1][1] == jogadorDaVez && matriz[0][2] == jogadorDaVez);
+         (matriz[0][2] == jogadorDaVez && matriz[1][1] == jogadorDaVez && matriz[2][0] == jogadorDaVez);
 }
 
 }

@@ -6,11 +6,7 @@ logica logica = new logica();
 void setup(){
   size(600,600);
   background(255);
-  textSize(56);
-  PFont font;
-  font = createFont("arial_black.ttf", 56);
-  textFont(font, 56);
-  strokeWeight(5);
+
   
   inicio();
 }
@@ -60,10 +56,21 @@ void drawBoard(){
  void inicio() {
   cena = 0;
   logica.reset();
+   
+  textSize(56);
+  PFont font;
+  font = createFont("arial_black.ttf", 56);
+  textFont(font, 56);
+  strokeWeight(5);
+  
   background(255);
   fill(65, 105, 255);
-  text("Jogo da Velha", 80, height / 3);
-  text("Iniciar", 200, height / 1.7);
+  textAlign(CENTER);
+  text("Jogo da Velha", 300, 200);
+  textSize(48);
+  fill(0);
+  text("um jogador", 300, 350);
+  text("dois jogadores",300, 450);
   
   //PQ VC N FUNCIONA???? ( ╥ω╥ )
   if (mouseX > 300 && mouseX < 350 && mouseY > 350 && mouseY < 300){
@@ -103,8 +110,15 @@ void drawBoard(){
  
  void mouseClicked() {
   if(cena == 0){
-    drawBoard();
-    cena = 1;
+    println(mouseX + " " + mouseY);
+    if(mouseX >= 0 && mouseX <= 600 && mouseY >= 280 && mouseY <= 380){
+      println("fazer CPU");
+    }
+    if(mouseX >= 0 && mouseX <= 600 && mouseY > 380 && mouseY <= 600){
+      drawBoard();
+      cena = 1;
+    }
+    
   }
   if(cena == 1){
     //checa tabuleiro antes da próx jogada
