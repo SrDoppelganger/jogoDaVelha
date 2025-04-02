@@ -73,12 +73,7 @@ void drawBoard(){
   text("um jogador", 300, 350);
   text("dois jogadores",300, 450);
   
-  //PQ VC N FUNCIONA???? ( ╥ω╥ )
-  if (mouseX > 300 && mouseX < 350 && mouseY > 350 && mouseY < 300){
-    noFill();
-    rect(300, 350, 350, 300);
   }
- }
  
  void empate(){
    cena = 2;
@@ -112,7 +107,6 @@ void drawBoard(){
  
  void mouseClicked() {
   if(cena == 0){
-    println(mouseX + " " + mouseY);
     if(mouseX >= 0 && mouseX <= 600 && mouseY >= 280 && mouseY <= 380){
       //modo um jogador
       single = true;
