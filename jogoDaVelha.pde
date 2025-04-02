@@ -1,7 +1,8 @@
-
+int cena; // 0-tela de inicio 1-tela do jogo
+//importa lógica do jogo
+logica logica = new logica();
 
 void setup(){
-  
   size(600,600);
   background(255);
   textSize(56);
@@ -14,10 +15,23 @@ void setup(){
 }
 
 void draw(){
-
+ if(cena == 1){
+   fill(0);
+   textSize(96);
+   text(logica.matriz[0][0],110,120);
+   text(logica.matriz[0][1],280,120);
+   text(logica.matriz[0][2],460,120);
+   text(logica.matriz[1][0],110,310);
+   text(logica.matriz[1][1],280,310);
+   text(logica.matriz[1][2],460,310);
+   text(logica.matriz[2][0],120,485);
+   text(logica.matriz[2][1],280,485);
+   text(logica.matriz[2][2],460,485);
+ }
 }
 
 void drawBoard(){
+  background(255);
   //linha vertical 1
   strokeWeight(5);
   stroke(0);
@@ -40,9 +54,12 @@ void drawBoard(){
 }
 
  void inicio() {
-   fill(65, 105, 255);
+  cena = 0;
+  fill(65, 105, 255);
   text("Jogo da Velha", 80, height / 3);
   text("Iniciar", 200, height / 1.7);
+  
+  //PQ VC N FUNCIONA???? ( ╥ω╥ )
   if (mouseX > 300 && mouseX < 350 && mouseY > 350 && mouseY < 300){
     noFill();
     rect(300, 350, 350, 300);
@@ -50,6 +67,52 @@ void drawBoard(){
  }
  
  void mouseClicked() {
- println(mouseX);
- println(mouseY);
+  if(cena == 0){
+    cena = 1;
+    drawBoard();
+  }
+  if(cena == 1){
+    drawJogada();
+  }
+ }
+ 
+ void drawJogada(){
+  println(mouseX + " " + mouseY);
+
+   //jogada no quadrado 1,1
+   if(mouseX >= 20 && mouseX <= 195 && mouseY >= 20 && mouseY <= 195){
+     logica.jogada(0,0);
+   }
+   //jogada no quadrado 1,2
+   if(mouseX >= 202 && mouseX <= 398 && mouseY >= 20 && mouseY <= 195){
+     logica.jogada(0,1);
+   }
+   //jogada no quadrado 1,3
+   if(mouseX >= 403 && mouseX <= 580 && mouseY >= 20 && mouseY <= 195){
+     logica.jogada(0,2);
+   }
+    //jogada no quadrado 2,1
+   if(mouseX >= 20 && mouseX <= 195 && mouseY >= 202 && mouseY <= 398){
+     logica.jogada(1,0);
+   }
+   //jogada no quadrado 2,2
+   if(mouseX >= 202 && mouseX <= 398 && mouseY >= 202 && mouseY <= 398){
+     logica.jogada(1,1);
+   }
+   //jogada no quadrado 2,3
+   if(mouseX >= 403 && mouseX <= 580 && mouseY >= 202 && mouseY <= 398){
+     logica.jogada(1,2);
+   }
+    //jogada no quadrado 3,1
+   if(mouseX >= 20 && mouseX <= 195 && mouseY >= 403 && mouseY <= 580){
+     logica.jogada(2,0);
+   }
+   //jogada no quadrado 3,2
+   if(mouseX >= 202 && mouseX <= 398 && mouseY >= 403 && mouseY <= 580){
+     logica.jogada(2,1);
+   }
+   //jogada no quadrado 3,3
+   if(mouseX >= 403 && mouseX <= 580 && mouseY >= 403 && mouseY <= 580){
+     logica.jogada(2,2);
+   }
  }
