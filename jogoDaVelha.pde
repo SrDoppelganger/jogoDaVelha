@@ -1,4 +1,4 @@
-int cena; // 0-tela de inicio 1-tela do jogo
+int cena; // 0-tela de inicio 1-tela do jogo 2-tela de fim
 //importa lógica do jogo
 logica logica = new logica();
 
@@ -51,6 +51,7 @@ void drawBoard(){
   strokeWeight(5);
   stroke(0);
   line(50,400,550,400);
+  
 }
 
  void inicio() {
@@ -67,31 +68,42 @@ void drawBoard(){
   }
  }
  
- void fim(){
+ void empate(){
    background(255);
    fill(0);
-   text("Fim do jogo!",80, height/3);
+   text("Empate!",80, height/3);
    text("(WIP)", 200, height / 1.7);
+ }
+ 
+ void vitoria(){
+   background(255);
+   fill(0);
+   textSize(32);
+   textAlign(CENTER);
+   text("Algum jogador ganhou!",300, height/3);
+   text("(WIP)", 300, height / 1.7);
  }
  
  void mouseClicked() {
   if(cena == 0){
-    cena = 1;
     drawBoard();
+    cena = 1;
   }
   if(cena == 1){
+    //checa tabuleiro antes da próx jogada
+    verificarTabuleiro();
     drawJogada();
   }
   if(cena == 2){
     cena = 0;
+    inicio();
   }
  }
  
  void drawJogada(){
   println(mouseX + " " + mouseY);
    
-   //checa tabuleiro antes da próx jogada
-   verificarTabuleiro();
+  
 
    //jogada no quadrado 1,1
    if(mouseX >= 20 && mouseX <= 195 && mouseY >= 20 && mouseY <= 195){
@@ -132,8 +144,13 @@ void drawBoard(){
  }
  
  void verificarTabuleiro(){
+   if(logica.checarResultado()){
+     cena = 2;
+     vitoria();
+   }
+   
    if(logica.checarTabuleiro()){
      cena = 2;
-     fim();
+     empate();
    }
  }
