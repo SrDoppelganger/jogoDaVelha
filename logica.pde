@@ -5,7 +5,17 @@ String[][] matriz = new String[][]{
   {"","",""},
   {"","",""}
 };
+
+void reset(){
+  for(int i=0; i<3;i++){
+    for(int j=0; j<3;j++){
+      matriz[i][j] = "";
+    }
+  }
+}
+
 void jogada(int li, int col){
+  checarResultado();
   if(li >= 0 && li < 3 && col >= 0 && col < 3 && matriz[li][col] == ""){
     matriz[li][col] = jogadorDaVez;
     println(matriz[li][col]);  
@@ -23,7 +33,7 @@ void jogada(int li, int col){
 
 
 void trocarJogador(){
-  checarResultado(); 
+  checarTabuleiro();
   jogadorDaVez = (jogadorDaVez == "X") ? "O" : "X";
 }
 
@@ -41,7 +51,6 @@ return true;
 }
 
 boolean checarResultado(){
-   println("checar res está rodando");
   for(int i = 0; i < 3; i++){
     //checa as linhas e as colunas
     if((matriz[i][0] == jogadorDaVez && matriz[i][1] == jogadorDaVez && matriz[i][2] == jogadorDaVez) || (matriz[0][i] == jogadorDaVez && matriz[1][i] == jogadorDaVez && matriz[2][i] == jogadorDaVez)){

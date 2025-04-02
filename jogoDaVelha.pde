@@ -1,4 +1,5 @@
 int cena; // 0-tela de inicio 1-tela do jogo 2-tela de fim
+String jogador = "Jogador 1";
 //importa lógica do jogo
 logica logica = new logica();
 
@@ -15,6 +16,8 @@ void setup(){
 }
 
 void draw(){
+ verificarTabuleiro(); 
+  
  if(cena == 1){
    fill(0);
    textSize(64);
@@ -56,6 +59,7 @@ void drawBoard(){
 
  void inicio() {
   cena = 0;
+  logica.reset();
   background(255);
   fill(65, 105, 255);
   text("Jogo da Velha", 80, height / 3);
@@ -69,6 +73,7 @@ void drawBoard(){
  }
  
  void empate(){
+   cena = 2;
    background(255);
    fill(0);
    text("Empate!",80, height/3);
@@ -76,12 +81,24 @@ void drawBoard(){
  }
  
  void vitoria(){
+   cena = 2;
+   if(logica.jogadorDaVez == "X"){
+     jogador = "jogador 1";
+   }
+   else{
+     jogador = "jogador 2";
+   }
+   
    background(255);
    fill(0);
-   textSize(32);
+   textSize(48);
    textAlign(CENTER);
-   text("Algum jogador ganhou!",300, height/3);
-   text("(WIP)", 300, height / 1.7);
+   fill(0,255,0);
+   text(jogador + " venceu!",300, height/3);
+   
+   textSize(32);
+   fill(0);
+   text("clique para continuar", 300, height / 1.7);
  }
  
  void mouseClicked() {
@@ -95,7 +112,6 @@ void drawBoard(){
     drawJogada();
   }
   if(cena == 2){
-    cena = 0;
     inicio();
   }
  }
