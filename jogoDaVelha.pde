@@ -4,11 +4,16 @@ String jogador = "Jogador 1";
 //importa lógica do jogo
 logica logica = new logica();
 
+//variaveis de tema
+int[] bgColor = {255, 255, 255};
+int[] lineColor = {0, 0, 0};
+int[] p1Color = {0 , 0, 255};
+int[] p2Color = {255, 0, 0};
+
+
 void setup(){
   size(600,600);
   background(255);
-
-  
   inicio();
 }
 
@@ -16,7 +21,7 @@ void draw(){
  verificarTabuleiro(); 
   
  if(cena == 1){
-   fill(0);
+   fill(lineColor[0],lineColor[1],lineColor[2]);
    textSize(64);
    text(logica.matriz[0][0],110,120);
    text(logica.matriz[0][1],280,120);
@@ -31,25 +36,19 @@ void draw(){
 }
 
 void drawBoard(){
-  background(255);
+  background(bgColor[0],bgColor[1],bgColor[2]);
   //linha vertical 1
   strokeWeight(5);
-  stroke(0);
+  stroke(lineColor[0],lineColor[1],lineColor[2]);
   line(200,50,200,550);
   
   //linha vertical 2
-  strokeWeight(5);
-  stroke(0);
   line(400,50,400,550);
   
   //linha horizontal 1
-  strokeWeight(5);
-  stroke(0);
   line(50,200,550,200);
   
   //linha horizontal 2
-  strokeWeight(5);
-  stroke(0);
   line(50,400,550,400);
   
 }
@@ -64,44 +63,48 @@ void drawBoard(){
   textFont(font, 56);
   strokeWeight(5);
   
-  background(255);
-  fill(65, 105, 255);
+  background(bgColor[0],bgColor[1],bgColor[2]);
+  fill(lineColor[0],lineColor[1],lineColor[2]);
   textAlign(CENTER);
   text("Jogo da Velha", 300, 200);
   textSize(48);
-  fill(0);
+  fill(p1Color[0],p1Color[1],p1Color[2]);
   text("um jogador", 300, 350);
+  fill(p2Color[0],p2Color[1],p2Color[2]);
   text("dois jogadores",300, 450);
   
   }
  
  void empate(){
    cena = 2;
-   background(255);
-   fill(0);
+   background(bgColor[0],bgColor[1],bgColor[2]);
+   fill(lineColor[0],lineColor[1],lineColor[2]);
    textAlign(CENTER);
+   textSize(48);
    text("Empate!",300, height/3);
-   text("(WIP)", 300, height / 1.7);
+   textSize(32);
+   text("clique para continuar", 300, height / 1.7);
  }
  
  void vitoria(){
    cena = 2;
-   if(logica.jogadorDaVez == "X"){
-     jogador = "jogador 1";
-   }
-   else{
-     jogador = "jogador 2";
-   }
    
-   background(255);
-   fill(0);
+   background(bgColor[0],bgColor[1],bgColor[2]);
+   fill(lineColor[0],lineColor[1],lineColor[2]);
    textSize(48);
    textAlign(CENTER);
-   fill(0,255,0);
-   text(jogador + " venceu!",300, height/3);
+   if(logica.jogadorDaVez == "X"){
+     fill(p1Color[0],p1Color[1],p1Color[2]);
+     text("Jogador 1 venceu!",300, height/3);
+   }
+   else{
+     fill(p1Color[0],p1Color[1],p1Color[2]);
+     text("Jogador 2 venceu!",300, height/3);
+   }
+   
    
    textSize(32);
-   fill(0);
+   fill(lineColor[0],lineColor[1],lineColor[2]);
    text("clique para continuar", 300, height / 1.7);
  }
  
