@@ -26,4 +26,10 @@ void trocarJogador(){
   jogadorDaVez = (jogadorDaVez == "X") ? "O" : "X";
 }
 
+void checarTabuleiro(){
+  for(int i = 0; i < 3; i++){
+  }
+
+}
+
 }
